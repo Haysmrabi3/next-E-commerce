@@ -56,3 +56,15 @@ link:active::after {
 footer {
   background-color: #171717;
 }
+
+#head {
+  background-image: url('../../public/Home/banner-big-screen.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  #head {
+    background-image: url('../../public/Home/banner-small-screen.jpg');
+  }
+}

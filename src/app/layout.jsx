@@ -4,7 +4,7 @@ import Navbar from "@/Components/Navbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Ad from "@/Components/Ad";
 import Footer from "@/Components/Footer";
-
+import 'swiper/css';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,9 +29,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Ad/>
          <Navbar/>
-        <div className="container mx-auto">
         {children}
-        </div>
         <Footer/>
         
         </body>

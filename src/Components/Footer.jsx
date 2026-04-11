@@ -61,7 +61,7 @@ export default function Footer() {
                             <i className="fab fa-instagram hover:text-pink-500 cursor-pointer transition"></i>
                             <i className="fas fa-shopping-cart hover:text-gray-300 cursor-pointer transition"></i>
                         </div>
-                    </div>
+                    </div>  
 
                 </div>
             </div>
