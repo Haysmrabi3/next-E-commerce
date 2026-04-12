@@ -1,10 +1,7 @@
-import FeaturedSlider from "@/Components/FeaturedSlider";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-
-
 
 
 
@@ -64,6 +61,10 @@ export default function Home() {
             >
               Show All
             </Link>
+
+            <div>
+
+            </div>
 
           </div>
         </div>
@@ -260,7 +261,7 @@ export default function Home() {
       <section id="Featured" className="h-screen bg-white text-black">
         <div className="container mx-auto mt-15 ">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">Featured Products</h3>
-          <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-500">7 items</p>
+          <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-500">5 items</p>
           <div className="">
             <div className="flex gap-5 mt-10 ">
               <div className="flex gap-5">
@@ -271,11 +272,11 @@ export default function Home() {
                       <h4 className="font-semibold mt-2 text-center  " >{item.name}</h4>
                     </Link>
                     <div className="absolute top-5 right-5">
-                          <span>{item.stock ?  <span className="border border-green-500 p-2 font-semibold bg-green-500/10 text-green-600 rounded-2xl" >In stock</span>    
-                          :
-                            
-                            <span className="border border-red-500 p-2 font-semibold bg-red-500/10 text-red-700  rounded-2xl" >Sold Out</span> }
-                            </span>
+                      <span>{item.stock ? <span className="border border-green-500 p-2 font-semibold bg-green-500/10 text-green-600 rounded-2xl" >In stock</span>
+                        :
+
+                        <span className="border border-red-500 p-2 font-semibold bg-red-500/10 text-red-700  rounded-2xl" >Sold Out</span>}
+                      </span>
                     </div>
                   </div>
                 })}
