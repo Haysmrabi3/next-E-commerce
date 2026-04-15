@@ -8,7 +8,7 @@ export default function page() {
  <section id="About" className="bg-white py-16 text-black">
   <div className="container mx-auto px-6 my-20">
 
-    <div className="text-center  mx-auto mb-12 bg-gray-200 p-25  rounded-2xl">
+    <div className="text-center  mx-auto pb-12 bg-gray-200 p-25  rounded-2xl">
       <h4 className="text-3xl font-bold mb-4">
         Our Story: Where Comfort Meets Elegance
       </h4>

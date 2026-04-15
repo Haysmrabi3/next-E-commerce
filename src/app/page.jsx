@@ -9,23 +9,28 @@ export default function Home() {
     {
       name: `ZIP UP HOODIE`,
       path: `/Home/hoodie.jpg`,
-      stock: true
+      stock: true , 
+      id : 1 
     }, {
       name: `Jeans`,
       path: `/Collections/frvyqgsh0d6sdcv65pfk (1).jpg`,
-      stock: false
+      stock: false, 
+      id : 2 
     }, {
       name: `Basic Hoodie`,
       path: `/Home/gooo.jpg`,
-      stock: true
+      stock: true, 
+      id : 3 
     }, {
       name: `Sweat Pants`,
       path: `/Home/sweet pants1.jpg`,
-      stock: false
+      stock: false, 
+      id : 4
     }, {
       name: `Sweat Pants`,
       path: `/Home/sweet pants 2.jpg`,
-      stock: true
+      stock: true, 
+      id : 5
     }
   ]
 
@@ -85,7 +90,7 @@ export default function Home() {
 
             <div className="card border rounded-lg p-5 cursor-pointer relative group overflow-hidden">
 
-              <Link href={`/`}>
+              <Link href={`/Collections`}>
 
                 <Image
                   width={400}
@@ -117,7 +122,7 @@ export default function Home() {
 
             <div className="card border rounded-lg p-5 cursor-pointer relative group overflow-hidden">
 
-              <Link href={`/`}>
+              <Link href={`/Collections`}>
 
                 <Image
                   width={400}
@@ -149,7 +154,7 @@ export default function Home() {
 
             <div className="card border rounded-lg p-5 cursor-pointer relative group overflow-hidden">
 
-              <Link href={`/`}>
+              <Link href={`/Collections`}>
 
                 <Image
                   width={400}
@@ -181,7 +186,7 @@ export default function Home() {
 
             <div className="card border rounded-lg p-5 cursor-pointer relative group overflow-hidden">
 
-              <Link href={`/`}>
+              <Link href={`/Collections`}>
 
                 <Image
                   width={400}
@@ -258,35 +263,71 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="Featured" className="h-screen bg-white text-black">
-        <div className="container mx-auto mt-15 ">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">Featured Products</h3>
-          <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-500">5 items</p>
-          <div className="">
-            <div className="flex gap-5 mt-10 ">
-              <div className="flex gap-5">
-                {products.map((item, index) => {
-                  return <div key={index} className="relative">
-                    <Link href={`/`} >
-                      <Image width={400} height={300} className="rounded-3xl h-[400px]" src={item.path}></Image>
-                      <h4 className="font-semibold mt-2 text-center  " >{item.name}</h4>
-                    </Link>
-                    <div className="absolute top-5 right-5">
-                      <span>{item.stock ? <span className="border border-green-500 p-2 font-semibold bg-green-500/10 text-green-600 rounded-2xl" >In stock</span>
-                        :
+<section id="Featured" className="min-h-screen bg-white text-black">
+  <div className="container mx-auto pt-10 px-4">
+    
+    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+      Featured Products
+    </h3>
+    <p className="text-sm sm:text-base lg:text-lg font-semibold text-gray-500">
+      5 items
+    </p>
 
-                        <span className="border border-red-500 p-2 font-semibold bg-red-500/10 text-red-700  rounded-2xl" >Sold Out</span>}
-                      </span>
-                    </div>
-                  </div>
-                })}
-              </div>
+    <div className="mt-10 grid gap-6 
+      grid-cols-1 
+      sm:grid-cols-2 
+      md:grid-cols-3 
+      lg:grid-cols-5">
+      
+      {products.map((item, index) => {
+        return (
+     <div key={index} className="relative group ">
 
-            </div>
-          </div>
-        </div>
+  <Link href={`/`}>
+    <Image
+      width={400}
+      height={300}
+      className="rounded-3xl w-full h-[300px] sm:h-[350px] lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+      src={item.path}
+      alt={item.name}
+    />
 
-      </section>
+    <h4 className="font-semibold mt-3 text-center">
+      {item.name}
+    </h4>
+  </Link>
+
+  {/* Stock Badge */}
+  <div className="absolute top-5 right-5">
+    {item.stock ? (
+      <span className="border border-green-500 px-3 py-1 text-sm font-semibold bg-green-500/10 text-green-600 rounded-2xl">
+        In stock
+      </span>
+    ) : (
+      <span className="border border-red-500 px-3 py-1 text-sm font-semibold bg-red-500/10 text-red-700 rounded-2xl">
+        Sold Out
+      </span>
+    )}
+  </div>
+
+  <div
+    className="absolute bottom-0 left-[25%]  p-5 
+               opacity-0 -translate-y-4 
+               group-hover:opacity-100 group-hover:-translate-y-6 
+               transition-all duration-300 w-full"
+  >
+    <Link href={`/`} className="font-semibold text-blcak bg-white/60 px-4 py-2 rounded-xl overflow-hidden">
+      View Details
+    </Link>
+  </div>
+
+</div>
+        );
+      })}
+
+    </div>
+  </div>
+</section>
     </>
   );
 }
