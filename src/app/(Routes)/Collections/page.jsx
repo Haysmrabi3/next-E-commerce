@@ -85,7 +85,7 @@ export default function CollectionsPage() {
         key={item.id}
         className="relative w-full sm:w-[48%] md:w-[30%] lg:w-[18%] group "
       >
-        <Link href="/">
+        <Link href={`/ProductDetails/` + item.id}>
           <Image
             width={300}
             height={300}

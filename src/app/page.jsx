@@ -5,47 +5,20 @@ export default function Home() {
 
 
 
-  const products = [
-    {
-      name: `ZIP UP HOODIE`,
-      path: `/Home/hoodie.jpg`,
-      stock: true , 
-      id : 1 
-    }, {
-      name: `Jeans`,
-      path: `/Collections/frvyqgsh0d6sdcv65pfk (1).jpg`,
-      stock: false, 
-      id : 2 
-    }, {
-      name: `Basic Hoodie`,
-      path: `/Home/gooo.jpg`,
-      stock: true, 
-      id : 3 
-    }, {
-      name: `Sweat Pants`,
-      path: `/Home/sweet pants1.jpg`,
-      stock: false, 
-      id : 4
-    }, {
-      name: `Sweat Pants`,
-      path: `/Home/sweet pants 2.jpg`,
-      stock: true, 
-      id : 5
-    }
-  ]
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const products = [
+        { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
+        { name: "Sweat Pants", path: "/Collections/3.jpg", stock: false, id: 3, price: 80 },
+        { name: "Jeans", path: "/Collections/4.jpg", stock: true, id: 4, price: 150 },
+        { name: "Sweat Pants", path: "/Collections/6.jpg", stock: false, id: 6, price: 70 },
+        { name: "Jeans", path: "/Collections/10.jpg", stock: true, id: 10, price: 200 },
+        { name: "Summer Shirt", path: "/Collections/5.jpg", stock: true, id: 5, price: 90 },
+        { name: "Basic Hoodie", path: "/Collections/7.jpg", stock: true, id: 7, price: 180 },
+        { name: "Crew Neck Hoodie", path: "/Collections/9.jpg", stock: false, id: 9, price: 160 },
+        { name: "ZIP UP HOODIE", path: "/Collections/12.jpg", stock: true, id: 12, price: 220 },
+        { name: "Boxy fit", path: "/Collections/2.jpg", stock: true, id: 2, price: 60 },
+        { name: "Old Money T-Shirt", path: "/Collections/8.jpg", stock: false, id: 8, price: 75 },
+        { name: "Sport T-Shirt", path: "/Collections/11.jpg", stock: true, id: 11, price: 85 }
+    ];
 
 
 
@@ -279,11 +252,11 @@ export default function Home() {
       md:grid-cols-3 
       lg:grid-cols-5">
       
-      {products.map((item, index) => {
+      {products.map((item) => {
         return (
-     <div key={index} className="relative group ">
+     <div key={item.id} className="relative group ">
 
-  <Link href={`/`}>
+  <Link href={`/ProductDetails/` +  item.id}>
     <Image
       width={400}
       height={300}
@@ -316,7 +289,7 @@ export default function Home() {
                group-hover:opacity-100 group-hover:-translate-y-6 
                transition-all duration-300 w-full"
   >
-    <Link href={`/`} className="font-semibold text-blcak bg-white/60 px-4 py-2 rounded-xl overflow-hidden">
+    <Link href={`/ProductDetails/` + item.id} className="font-semibold text-blcak bg-white/60 px-4 py-2 rounded-xl overflow-hidden">
       View Details
     </Link>
   </div>

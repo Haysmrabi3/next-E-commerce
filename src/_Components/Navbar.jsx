@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CartContext } from "@/Context/CartContext";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export default function Navbar() {
     { name: "About", href: "/About" },
     { name: "Contact Us", href: "/Contact" },
   ];
+  const { cart } = useContext(CartContext);
 
   return (
     <nav className="bg-white/80 backdrop-blur-md py-5 text-black w-full fixed top-0 left-0 z-50 shadow-sm border-b border-gray-100">
@@ -37,10 +39,9 @@ export default function Navbar() {
                     after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2
                     after:-bottom-1 after:h-[2px] after:bg-black
                     after:transition-all after:duration-300
-                    ${
-                      isActive
-                        ? "after:w-full"
-                        : "after:w-0 hover:after:w-full"
+                    ${isActive
+                      ? "after:w-full"
+                      : "after:w-0 hover:after:w-full"
                     }
                   `}
                 >
@@ -58,9 +59,18 @@ export default function Navbar() {
             <i className="fas fa-search"></i>
           </div>
 
-          <div className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded cursor-pointer transition">
+          <Link
+            href="/Cart"
+            className="relative w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded cursor-pointer transition"
+          >
             <i className="fas fa-shopping-cart"></i>
-          </div>
+
+            {cart?.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cart.length}
+              </span>
+            )}
+          </Link>
 
           <div className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded cursor-pointer transition">
             <i className="fas fa-user"></i>
@@ -89,9 +99,8 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`block transition ${
-                      isActive ? "font-bold" : "text-gray-600"
-                    }`}
+                    className={`block transition ${isActive ? "font-bold" : "text-gray-600"
+                      }`}
                   >
                     {link.name}
                   </Link>

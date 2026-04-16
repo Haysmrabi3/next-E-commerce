@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Ad from "@/_Components/Ad";
 import Footer from "@/_Components/Footer";
 import 'swiper/css';
+import CartProvider from "@/Context/CartContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,13 +27,16 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="">
-        <Ad/>
-         <Navbar/>
-        {children}
-        <Footer/>
-        
-        </body>
+      <body>
+        <CartProvider>
+          <Ad />
+          <Navbar />
+
+          {children}
+
+          <Footer />
+        </CartProvider>
+      </body>
     </html>
-  );ذ
+  );
 }
