@@ -12,12 +12,14 @@ export default function CollectionsPage() {
     soldOut: false,
   });
 
-  const [active, setActive] = useState(null);
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(500);
-  const [inStock, setInStock] = useState(false);
-  const [soldOut, setSoldOut] = useState(false);
+  // temp states
+  const [tempPrice, setTempPrice] = useState({ from: 0, to: 500 });
+  const [tempAvailability, setTempAvailability] = useState({
+    inStock: false,
+    soldOut: false,
+  });
 
+  const [active, setActive] = useState(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +33,7 @@ export default function CollectionsPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ================= DATA =================
   const Pants = [
     { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
     { name: "Sweat Pants", path: "/Collections/3.jpg", stock: false, id: 3, price: 80 },
@@ -55,6 +58,7 @@ export default function CollectionsPage() {
     { name: "Sport T-Shirt", path: "/Collections/11.jpg", stock: true, id: 11, price: 85 }
   ];
 
+  // ================= FILTER =================
   const applyFilter = (items) => {
     return items.filter((item) => {
       const priceMatch =
@@ -62,8 +66,13 @@ export default function CollectionsPage() {
 
       let stockMatch = true;
 
-      if (filters.inStock && !item.stock) stockMatch = false;
-      if (filters.soldOut && item.stock) stockMatch = false;
+      if (filters.inStock && filters.soldOut) {
+        stockMatch = true;
+      } else if (filters.inStock) {
+        stockMatch = item.stock;
+      } else if (filters.soldOut) {
+        stockMatch = !item.stock;
+      }
 
       return priceMatch && stockMatch;
     });
@@ -75,31 +84,25 @@ export default function CollectionsPage() {
     if (filtered.length === 0) {
       return (
         <div className="text-center text-gray-500 py-10 w-full">
-          No products found with these filters
+          No products found
         </div>
       );
     }
 
     return filtered.map((item) => (
-      <div
-        key={item.id}
-        className="relative w-full sm:w-[48%] md:w-[30%] lg:w-[18%] group "
-      >
+      <div key={item.id} className="relative w-full sm:w-[48%] md:w-[30%] lg:w-[18%] group">
         <Link href={`/ProductDetails/` + item.id}>
           <Image
             width={300}
             height={300}
-            className="rounded-3xl h-[400px] w-full object-cover 
-                       transition-transform duration-300 group-hover:scale-105"
+            className="rounded-3xl h-[400px] w-full object-cover group-hover:scale-105 transition"
             src={item.path}
             alt={item.name}
           />
-
           <h4 className="text-center mt-2">{item.name}</h4>
           <p className="text-center text-gray-500">{item.price} EGP</p>
         </Link>
 
-        {/* Stock Badge */}
         <div className="absolute top-5 right-5">
           {item.stock ? (
             <span className="border border-green-500 p-2 bg-green-500/10 text-green-600 rounded-2xl">
@@ -111,82 +114,180 @@ export default function CollectionsPage() {
             </span>
           )}
         </div>
-
-        <div
-          className="absolute bottom-0 left-[25%]  p-5 
-               opacity-0 -translate-y-8 
-               group-hover:opacity-100 group-hover:-translate-y-10
-               transition-all duration-300 w-full"
-        >
-          <Link href={`/`} className="font-semibold text-blcak bg-white/60 px-4 py-2 rounded-xl overflow-hidden">
-            View Details
-          </Link>
-        </div>
       </div>
     ));
   };
 
+  // ================= UI =================
   return (
     <section className="pt-30 text-black bg-white">
       <div className="container mx-auto px-4">
 
         {/* FILTER */}
-        <div className="flex flex-wrap justify-start items-center gap-4 mb-6">
-
-          <span className="text-sm font-semibold text-gray-500 border-r pr-3">
-            Filter
-          </span>
+        <div className="flex gap-4 mb-6 items-center">
+          <span className="text-sm text-gray-500 border-r pr-3">Filter</span>
 
           <div className="relative" ref={dropdownRef}>
 
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-3">
 
+              {/* Availability */}
               <button
-                onClick={() =>
-                  setActive(active === "availability" ? null : "availability")
-                }
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md
-                ${active === "availability"
-                    ? "bg-black text-white"
-                    : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
-                  }`}
+                onClick={() => {
+                  setActive(active === "availability" ? null : "availability");
+                  setTempAvailability({
+                    inStock: filters.inStock,
+                    soldOut: filters.soldOut,
+                  });
+                }}
+                className={`px-5 py-2 rounded-full ${
+                  active === "availability" ? "bg-black text-white" : "bg-white border"
+                }`}
               >
                 Availability
               </button>
 
+              {/* Price */}
               <button
-                onClick={() =>
-                  setActive(active === "price" ? null : "price")
-                }
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md
-                ${active === "price"
-                    ? "bg-black text-white"
-                    : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
-                  }`}
+                onClick={() => {
+                  setActive(active === "price" ? null : "price");
+                  setTempPrice({
+                    from: filters.from,
+                    to: filters.to,
+                  });
+                }}
+                className={`px-5 py-2 rounded-full ${
+                  active === "price" ? "bg-black text-white" : "bg-white border"
+                }`}
               >
                 Price
               </button>
 
             </div>
 
+            {/* PRICE DROPDOWN */}
+            {active === "price" && (
+              <div className="absolute top-12 left-0 bg-gray-100 border shadow-xl p-5 rounded-2xl z-50 w-72">
+
+                <h4 className="text-xs text-gray-500 mb-4">PRICE RANGE</h4>
+
+                <div className="flex gap-3 mb-5">
+                  <input
+                    type="number"
+                    value={tempPrice.from}
+                    onChange={(e) =>
+                      setTempPrice({ ...tempPrice, from: Number(e.target.value) })
+                    }
+                    className="bg-gray-200 w-1/2 rounded-xl px-3 py-2"
+                  />
+                  <input
+                    type="number"
+                    value={tempPrice.to}
+                    onChange={(e) =>
+                      setTempPrice({ ...tempPrice, to: Number(e.target.value) })
+                    }
+                    className="bg-gray-200 w-1/2 rounded-xl px-3 py-2"
+                  />
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      setFilters({ ...filters, ...tempPrice });
+                      setActive(null);
+                    }}
+                    className="w-1/2 bg-black text-white py-2 rounded-xl"
+                  >
+                    Apply
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setTempPrice({ from: 0, to: 500 });
+                      setFilters({ ...filters, from: 0, to: 500 });
+                    }}
+                    className="w-1/2 bg-gray-200 py-2 rounded-xl"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* AVAILABILITY DROPDOWN */}
+            {active === "availability" && (
+              <div className="absolute top-12 left-0 bg-gray-100 border shadow-xl p-5 rounded-2xl z-50 w-60">
+
+                <h4 className="text-xs text-gray-500 mb-4">AVAILABILITY</h4>
+
+                <div className="flex flex-col gap-3">
+
+                  <label className="flex gap-2">
+                    <input
+                      type="checkbox"
+                      checked={tempAvailability.inStock}
+                      onChange={(e) =>
+                        setTempAvailability({
+                          ...tempAvailability,
+                          inStock: e.target.checked,
+                        })
+                      }
+                    />
+                    In Stock
+                  </label>
+
+                  <label className="flex gap-2">
+                    <input
+                      type="checkbox"
+                      checked={tempAvailability.soldOut}
+                      onChange={(e) =>
+                        setTempAvailability({
+                          ...tempAvailability,
+                          soldOut: e.target.checked,
+                        })
+                      }
+                    />
+                    Sold Out
+                  </label>
+
+                </div>
+
+                <div className="flex gap-3 mt-5">
+                  <button
+                    onClick={() => {
+                      setFilters({ ...filters, ...tempAvailability });
+                      setActive(null);
+                    }}
+                    className="w-1/2 bg-black text-white py-2 rounded-xl"
+                  >
+                    Apply
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setTempAvailability({ inStock: false, soldOut: false });
+                      setFilters({ ...filters, inStock: false, soldOut: false });
+                    }}
+                    className="w-1/2 bg-gray-200 py-2 rounded-xl"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
 
         {/* PRODUCTS */}
-        <h3 className="text-3xl font-semibold mt-5">Pants</h3>
-        <div className="flex gap-5 mt-5 flex-wrap">
-          {renderItems(Pants)}
-        </div>
+        <h3 className="text-3xl font-semibold">Pants</h3>
+        <div className="flex gap-5 mt-5 flex-wrap">{renderItems(Pants)}</div>
 
         <h3 className="text-3xl font-semibold mt-10">Shirts</h3>
-        <div className="flex gap-5 mt-5 flex-wrap">
-          {renderItems(shirt)}
-        </div>
+        <div className="flex gap-5 mt-5 flex-wrap">{renderItems(shirt)}</div>
 
         <h3 className="text-3xl font-semibold mt-10">Hoodies</h3>
-        <div className="flex gap-5 mt-5 flex-wrap">
-          {renderItems(Hoodies)}
-        </div>
+        <div className="flex gap-5 mt-5 flex-wrap">{renderItems(Hoodies)}</div>
 
         <h3 className="text-3xl font-semibold mt-10">Tee</h3>
         <div className="flex gap-5 mt-5 flex-wrap pb-20">

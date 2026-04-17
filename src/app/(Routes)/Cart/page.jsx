@@ -12,6 +12,7 @@ export default function CartPage() {
     (acc, item) => acc + item.price * item.q,
     0
   );
+  const isDisabled = !cart || cart.length === 0;
 
   const products = [
     { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
@@ -29,7 +30,7 @@ export default function CartPage() {
   ];
 
   return (
-    <section className="bg-white min-h-screen py-10">
+    <section className="bg-white min-h-screen py-10 text-black">
       <div className="container mx-auto px-4">
 
         {/* HEADER */}
@@ -108,7 +109,7 @@ export default function CartPage() {
 
         {/* SUMMARY */}
         <div className="flex justify-end mt-10">
-          <div className="w-full md:w-[350px] border-t pt-6">
+          <div className="w-full  md:w-[350px] border-t pt-6">
 
             <div className="flex justify-between text-xl font-semibold mb-2">
               <span>Estimated total</span>
@@ -119,9 +120,16 @@ export default function CartPage() {
               Taxes, discounts and shipping calculated at checkout.
             </p>
 
-            <button className="w-full bg-black text-white py-3 font-semibold">
+            <Link
+              href={isDisabled ? "#" : "/CheckOut"}
+              className={`w-full block text-center py-3 font-semibold rounded-lg transition
+                  ${isDisabled
+                  ? "bg-gray-400 cursor-not-allowed pointer-events-none"
+                  : "bg-black text-white hover:bg-gray-800"}
+  `}
+            >
               Proceed to Checkout
-            </button>
+            </Link>
 
           </div>
         </div>

@@ -101,35 +101,47 @@ export default function Page() {
 
                         {/* Buttons */}
                         <div className="space-y-3 pt-2">
-                            <button
-                                onClick={() => {
-                                    addToCart({
-                                        id: product.id,
-                                        name: product.name,
-                                        price: product.price,
-                                        q: count ,
-                                        path : product.path
-                                    });
+                            {
+                                product.stock
+                                    ?
+                                    <>
+                                        <button
+                                            onClick={() => {
+                                                addToCart({
+                                                    id: product.id,
+                                                    name: product.name,
+                                                    price: product.price,
+                                                    q: count,
+                                                    path: product.path
+                                                });
 
-                                    Swal.fire({
-                                        position: "bottom-end",
-                                        icon: "success",
-                                        title: "Added to cart",
-                                        showConfirmButton: false,
-                                        timer: 1200,
-                                        toast: true,
-                                    });
-                                }}
-                                className="w-full bg-white border border-black text-black py-3 font-semibold rounded-md hover:bg-black hover:text-white transition"
-                            >
-                                <i className="fa-solid fa-bolt mr-2"></i>
-                                Add to Cart
-                            </button>
+                                                Swal.fire({
+                                                    position: "bottom-end",
+                                                    icon: "success",
+                                                    title: "Added to cart",
+                                                    showConfirmButton: false,
+                                                    timer: 1200,
+                                                    toast: true,
+                                                });
+                                            }}
+                                            className="w-full cursor-pointer bg-white border border-black text-black py-3 font-semibold rounded-md hover:bg-black hover:text-white transition"
+                                        >
+                                            <i className="fa-solid fa-bolt mr-2"></i>
+                                            Add to Cart
+                                        </button>
 
-                            <button className='w-full bg-white border border-black text-black py-3 font-semibold rounded-md hover:bg-black hover:text-white transition'>
-                                <i className="fa-solid fa-bolt mr-2"></i>
-                                Buy Now
-                            </button>
+                                        <button className='w-full cursor-pointer bg-white border border-black text-black py-3 font-semibold rounded-md hover:bg-black hover:text-white transition'>
+                                            <i className="fa-solid fa-bolt mr-2"></i>
+                                            Buy Now
+                                        </button>
+                                    </>
+                                    :
+
+                                    <button className='w-full cursor-pointer bg-gray-700 border border-black text-white py-3 font-semibold rounded-md'>
+                                        Sold Out
+                                    </button>
+
+                            }
                         </div>
 
                     </div>
