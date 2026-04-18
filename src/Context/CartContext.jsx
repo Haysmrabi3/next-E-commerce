@@ -7,8 +7,8 @@ export const CartContext = createContext(null);
 export default function CartProvider({ children }) {
 
   const [cart, setCart] = useState([]);
+  const [Q, setQ] = useState(0);
 
-  // ✅ تحميل الكارت من localStorage أول ما الصفحة تفتح
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
@@ -44,7 +44,7 @@ export default function CartProvider({ children }) {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart , setCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart , setCart , Q , setQ }}>
       {children}
     </CartContext.Provider>
   );

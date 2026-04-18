@@ -24,7 +24,7 @@ export default function page() {
     <div className="flex flex-col gap-3">
 
       <button
-        onClick={() => window.location.href = "/collections"}
+        onClick={() => window.location.href = "/Collections"}
         className="bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
       >
         Continue Shopping

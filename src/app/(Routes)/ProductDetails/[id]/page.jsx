@@ -12,7 +12,7 @@ export default function Page() {
     const ID = Number(params?.id);
 
     const [count, setCount] = useState(1);
-    const { addToCart, cart } = useContext(CartContext);
+    const { addToCart, setQ} = useContext(CartContext);
     const products = [
         { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
         { name: "Sweat Pants", path: "/Collections/3.jpg", stock: false, id: 3, price: 80 },
@@ -83,7 +83,7 @@ export default function Page() {
                         {/* Counter */}
                         <div className="flex items-center justify-between w-40 border border-gray-400 rounded-md px-4 py-2">
                             <button
-                                onClick={() => setCount(count > 1 ? count - 1 : 1)}
+                                onClick={() => setCount(count > 1 ? count - 1 : 1  , setQ(count))}
                                 className="text-gray-600 text-xl font-bold hover:text-black transition"
                             >
                                 -
@@ -92,7 +92,7 @@ export default function Page() {
                             <span className="text-lg font-medium">{count}</span>
 
                             <button
-                                onClick={() => setCount(count + 1)}
+                                onClick={() => setCount(count + 1 , setQ(count + 1))}
                                 className="text-gray-600 text-xl font-bold hover:text-black transition"
                             >
                                 +
@@ -130,10 +130,7 @@ export default function Page() {
                                             Add to Cart
                                         </button>
 
-                                        <button className='w-full cursor-pointer bg-white border border-black text-black py-3 font-semibold rounded-md hover:bg-black hover:text-white transition'>
-                                            <i className="fa-solid fa-bolt mr-2"></i>
-                                            Buy Now
-                                        </button>
+
                                     </>
                                     :
 

@@ -9,13 +9,6 @@ export default function Home() {
         { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
         { name: "Sweat Pants", path: "/Collections/3.jpg", stock: false, id: 3, price: 80 },
         { name: "Jeans", path: "/Collections/4.jpg", stock: true, id: 4, price: 150 },
-        { name: "Sweat Pants", path: "/Collections/6.jpg", stock: false, id: 6, price: 70 },
-        { name: "Jeans", path: "/Collections/10.jpg", stock: true, id: 10, price: 200 },
-        { name: "Summer Shirt", path: "/Collections/5.jpg", stock: true, id: 5, price: 90 },
-        { name: "Basic Hoodie", path: "/Collections/7.jpg", stock: true, id: 7, price: 180 },
-        { name: "Crew Neck Hoodie", path: "/Collections/9.jpg", stock: false, id: 9, price: 160 },
-        { name: "ZIP UP HOODIE", path: "/Collections/12.jpg", stock: true, id: 12, price: 220 },
-        { name: "Boxy fit", path: "/Collections/2.jpg", stock: true, id: 2, price: 60 },
         { name: "Old Money T-Shirt", path: "/Collections/8.jpg", stock: false, id: 8, price: 75 },
         { name: "Sport T-Shirt", path: "/Collections/11.jpg", stock: true, id: 11, price: 85 }
     ];

@@ -6,12 +6,14 @@ import { useContext } from "react";
 import { CartContext } from "@/Context/CartContext";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, removeFromCart , Q } = useContext(CartContext);
 
+  // ✅ total الكارت كله
   const total = cart.reduce(
-    (acc, item) => acc + item.price * item.q,
+    (acc, item) => acc + item.price * Q,
     0
   );
+
   const isDisabled = !cart || cart.length === 0;
 
   const products = [
@@ -35,7 +37,9 @@ export default function CartPage() {
 
         {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl text-black pt-25 font-semibold">Your cart</h1>
+          <h1 className="text-2xl text-black pt-25 font-semibold">
+            Your cart
+          </h1>
 
           <Link href="/Collections" className="text-sm">
             Continue shopping
@@ -66,6 +70,7 @@ export default function CartPage() {
                 key={item.id}
                 className="grid grid-cols-1 md:grid-cols-12 py-6 items-center gap-4"
               >
+
                 {/* PRODUCT */}
                 <div className="md:col-span-6 flex items-center gap-4">
                   <Image
@@ -77,7 +82,9 @@ export default function CartPage() {
                   />
 
                   <div>
-                    <h3 className="font-semibold text-black">{item.name}</h3>
+                    <h3 className="font-semibold text-black">
+                      {item.name}
+                    </h3>
                     <p className="text-sm text-black">
                       {item.price} LE
                     </p>
@@ -87,7 +94,7 @@ export default function CartPage() {
                 {/* QUANTITY */}
                 <div className="md:col-span-3 flex justify-center items-center">
                   <div className="flex items-center border rounded-md">
-                    <span className="px-4">{item.q}</span>
+                    <span className="px-4">{Q}</span>
                   </div>
 
                   <button
@@ -98,10 +105,11 @@ export default function CartPage() {
                   </button>
                 </div>
 
-                {/* TOTAL */}
+                {/* TOTAL لكل منتج */}
                 <div className="md:col-span-3 text-right font-semibold">
-                  LE {item.price * item.q}
+                  LE {item.price * Q}
                 </div>
+
               </div>
             );
           })}
@@ -109,7 +117,7 @@ export default function CartPage() {
 
         {/* SUMMARY */}
         <div className="flex justify-end mt-10">
-          <div className="w-full  md:w-[350px] border-t pt-6">
+          <div className="w-full md:w-[350px] border-t pt-6">
 
             <div className="flex justify-between text-xl font-semibold mb-2">
               <span>Estimated total</span>
@@ -121,12 +129,12 @@ export default function CartPage() {
             </p>
 
             <Link
-              href={isDisabled ? "#" : "/CheckOut"}
+              href={isDisabled ? "#" : "/success"}
               className={`w-full block text-center py-3 font-semibold rounded-lg transition
-                  ${isDisabled
+                ${isDisabled
                   ? "bg-gray-400 cursor-not-allowed pointer-events-none"
                   : "bg-black text-white hover:bg-gray-800"}
-  `}
+              `}
             >
               Proceed to Checkout
             </Link>
