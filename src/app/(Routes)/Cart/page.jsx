@@ -121,7 +121,7 @@ export default function CartPage() {
             </p>
 
             <Link
-              href={isDisabled ? "#" : "/success"}
+              href={isDisabled ? "#" : "/CheckOut"}
               className={`w-full block text-center py-3 font-semibold rounded-lg transition
                 ${isDisabled
                   ? "bg-gray-400 cursor-not-allowed pointer-events-none"
