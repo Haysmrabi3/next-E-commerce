@@ -12,7 +12,6 @@ export default function CollectionsPage() {
     soldOut: false,
   });
 
-  // temp states
   const [tempPrice, setTempPrice] = useState({ from: 0, to: 500 });
   const [tempAvailability, setTempAvailability] = useState({
     inStock: false,
@@ -33,7 +32,6 @@ export default function CollectionsPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // ================= DATA =================
   const Pants = [
     { name: "Jeans", path: "/Collections/1.jpg", stock: true, id: 1, price: 120 },
     { name: "Sweat Pants", path: "/Collections/3.jpg", stock: false, id: 3, price: 80 },
@@ -58,7 +56,6 @@ export default function CollectionsPage() {
     { name: "Sport T-Shirt", path: "/Collections/11.jpg", stock: true, id: 11, price: 85 }
   ];
 
-  // ================= FILTER =================
   const applyFilter = (items) => {
     return items.filter((item) => {
       const priceMatch =
@@ -118,7 +115,6 @@ export default function CollectionsPage() {
     ));
   };
 
-  // ================= UI =================
   return (
     <section className="pt-30 text-black bg-white">
       <div className="container mx-auto px-4">
@@ -165,7 +161,6 @@ export default function CollectionsPage() {
 
             </div>
 
-            {/* PRICE DROPDOWN */}
             {active === "price" && (
               <div className="absolute top-12 left-0 bg-gray-100 border shadow-xl p-5 rounded-2xl z-50 w-72">
 
@@ -214,7 +209,6 @@ export default function CollectionsPage() {
               </div>
             )}
 
-            {/* AVAILABILITY DROPDOWN */}
             {active === "availability" && (
               <div className="absolute top-12 left-0 bg-gray-100 border shadow-xl p-5 rounded-2xl z-50 w-60">
 
@@ -279,7 +273,6 @@ export default function CollectionsPage() {
           </div>
         </div>
 
-        {/* PRODUCTS */}
         <h3 className="text-3xl font-semibold">Pants</h3>
         <div className="flex gap-5 mt-5 flex-wrap">{renderItems(Pants)}</div>
 

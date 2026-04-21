@@ -8,7 +8,6 @@ import { CartContext } from "@/Context/CartContext";
 export default function CartPage() {
   const { cart, removeFromCart , Q } = useContext(CartContext);
 
-  // ✅ total الكارت كله
   const total = cart.reduce(
     (acc, item) => acc + item.price * Q,
     0
@@ -35,7 +34,6 @@ export default function CartPage() {
     <section className="bg-white min-h-screen py-10 text-black">
       <div className="container mx-auto px-4">
 
-        {/* HEADER */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl text-black pt-25 font-semibold">
             Your cart
@@ -46,14 +44,12 @@ export default function CartPage() {
           </Link>
         </div>
 
-        {/* TABLE HEADER */}
         <div className="hidden md:grid grid-cols-12 text-sm font-semibold text-black border-b pb-3">
           <div className="col-span-6">PRODUCT</div>
           <div className="col-span-3 text-center">QUANTITY</div>
           <div className="col-span-3 text-right">TOTAL</div>
         </div>
 
-        {/* ITEMS */}
         <div className="divide-y">
 
           {cart.length === 0 && (
@@ -71,7 +67,6 @@ export default function CartPage() {
                 className="grid grid-cols-1 md:grid-cols-12 py-6 items-center gap-4"
               >
 
-                {/* PRODUCT */}
                 <div className="md:col-span-6 flex items-center gap-4">
                   <Image
                     src={product?.path || "/placeholder.jpg"}
@@ -91,7 +86,6 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                {/* QUANTITY */}
                 <div className="md:col-span-3 flex justify-center items-center">
                   <div className="flex items-center border rounded-md">
                     <span className="px-4">{Q}</span>
@@ -105,7 +99,6 @@ export default function CartPage() {
                   </button>
                 </div>
 
-                {/* TOTAL لكل منتج */}
                 <div className="md:col-span-3 text-right font-semibold">
                   LE {item.price * Q}
                 </div>
@@ -115,7 +108,6 @@ export default function CartPage() {
           })}
         </div>
 
-        {/* SUMMARY */}
         <div className="flex justify-end mt-10">
           <div className="w-full md:w-[350px] border-t pt-6">
 

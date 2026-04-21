@@ -19,10 +19,8 @@ export default function page() {
       </p>
     </div>
 
-    {/* Journey Section */}
     <div className="flex flex-col lg:flex-row items-center gap-10 mb-16 my-25">
       
-      {/* Text */}
       <div className="lg:w-1/2 ">
         <h4 className="text-2xl font-semibold mb-4">Our Journey</h4>
         <p className="text-gray-600 mb-4 leading-relaxed">
@@ -35,7 +33,6 @@ export default function page() {
         </p>
       </div>
 
-      {/* Image */}
       <div className="lg:w-1/2 flex justify-center">
         <Image
           width={400}
@@ -47,7 +44,6 @@ export default function page() {
       </div>
     </div>
 
-    {/* Values */}
     <div className="mb-16 text-center bg-gray-200 p-15 rounded-2xl">
       <h5 className="text-2xl font-bold mb-8">Our Values</h5>
 
@@ -84,7 +80,6 @@ export default function page() {
       </div>
     </div>
 
-    {/* Who We Are */}
     <div className="text-center max-w-3xl mx-auto mb-12">
       <h4 className="text-2xl font-semibold mb-4">Who We Are</h4>
       <p className="text-gray-600 leading-relaxed">
@@ -94,7 +89,6 @@ export default function page() {
       </p>
     </div>
 
-    {/* CTA */}
     <div className="text-center bg-gray-200 p-15 rounded-2xl">
       <h4 className="text-2xl font-semibold mb-4">
         Discover Our Collection

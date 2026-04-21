@@ -49,7 +49,6 @@ export default function Page() {
                         />
                     </div>
 
-                    {/* CONTENT */}
                     <div className="space-y-6 pt-25">
 
                         <div className="flex justify-between items-center text-sm">
@@ -99,7 +98,6 @@ export default function Page() {
                             </button>
                         </div>
 
-                        {/* Buttons */}
                         <div className="space-y-3 pt-2">
                             {
                                 product.stock

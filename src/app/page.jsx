@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
       <header id="head" className="h-[90vh] pt-24">
         <div className="container mx-auto px-4 h-full">
           <div className="flex flex-col items-center h-full justify-end text-center">
@@ -191,7 +190,6 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row items-center gap-10">
 
-            {/* TEXT */}
             <div className="flex-1 text-center md:text-left">
 
               <h4 className="text-2xl sm:text-3xl font-bold mb-4 tracking-widest">
@@ -263,7 +261,6 @@ export default function Home() {
     </h4>
   </Link>
 
-  {/* Stock Badge */}
   <div className="absolute top-5 right-5">
     {item.stock ? (
       <span className="border border-green-500 px-3 py-1 text-sm font-semibold bg-green-500/10 text-green-600 rounded-2xl">

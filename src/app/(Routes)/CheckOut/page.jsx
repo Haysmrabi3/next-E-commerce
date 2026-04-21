@@ -47,15 +47,12 @@ export default function CheckoutPage() {
             onSubmit={(e) => {
               e.preventDefault();
 
-              // clear cart
               setCart([]);
 
-              // go to success page
               router.push("/success");
             }}
           >
 
-            {/* Shipping Info */}
             <h2 className="text-lg font-semibold mb-2">
               Shipping Information
             </h2>
@@ -77,7 +74,6 @@ export default function CheckoutPage() {
               className="border p-2 rounded-lg w-full mb-6"
             />
 
-            {/* Payment */}
             <h2 className="text-lg font-semibold mb-2">
               Payment Method
             </h2>
@@ -117,7 +113,6 @@ export default function CheckoutPage() {
 
             </div>
 
-            {/* Order Summary */}
             <h2 className="text-lg font-semibold mb-2">
               Order Summary
             </h2>
@@ -143,7 +138,6 @@ export default function CheckoutPage() {
               </p>
             </div>
 
-            {/* Button */}
             <button
               type="submit"
               className="w-full mt-6 bg-black text-white py-3 font-semibold rounded-lg hover:bg-gray-800 transition"

@@ -7,20 +7,16 @@ export default function page() {
 <div className="min-h-screen flex items-center justify-center bg-white text-black px-4">
   <div className="max-w-md w-full text-center p-8  rounded-2xl shadow-sm">
 
-    {/* Success Icon */}
     <div className="text-5xl mb-4">✅</div>
 
-    {/* Title */}
     <h2 className="text-2xl font-semibold mb-2">
       Order Placed Successfully!
     </h2>
 
-    {/* Message */}
     <p className="text-gray-500 mb-6">
       Thank you for your purchase. Your order is being processed and will be delivered soon.
     </p>
 
-    {/* Buttons */}
     <div className="flex flex-col gap-3">
 
       <button

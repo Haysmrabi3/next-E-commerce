@@ -16,7 +16,6 @@ export default function CartProvider({ children }) {
     }
   }, []);
 
-  // ✅ حفظ الكارت في localStorage كل ما يتغير
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -26,7 +25,6 @@ export default function CartProvider({ children }) {
       const exist = prev.find((item) => item.id === product.id);
 
       if (exist) {
-        // لو المنتج موجود نزود الكمية
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, q: item.q + 1 }
@@ -34,7 +32,6 @@ export default function CartProvider({ children }) {
         );
       }
 
-      // لو جديد
       return [...prev, { ...product, q: 1 }];
     });
   };

@@ -9,7 +9,6 @@ export default function Filters() {
 
   const dropdownRef = useRef(null);
 
-  // Close when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -56,7 +55,6 @@ export default function Filters() {
             </span>
           </button>
 
-          {/* Price */}
           <button
             onClick={() =>
               setActive(active === "price" ? null : "price")
@@ -76,7 +74,6 @@ export default function Filters() {
           </button>
         </div>
 
-        {/* Availability Dropdown */}
         {active === "availability" && (
           <div className="absolute top-16 left-0 w-64 bg-white rounded-xl shadow-md border p-4 z-50">
             <p className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-wide">
@@ -103,7 +100,6 @@ export default function Filters() {
           </div>
         )}
 
-        {/* Price Dropdown */}
         {active === "price" && (
           <div className="absolute top-16 left-0 w-80 bg-white rounded-2xl shadow-lg border border-gray-200 p-5 z-50">
             <p className="text-xs font-semibold text-gray-400 mb-4 uppercase tracking-wide">
@@ -141,7 +137,6 @@ export default function Filters() {
               </div>
             </div>
 
-            {/* Buttons */}
             <div className="flex gap-3">
               <button
                 onClick={handleApply}

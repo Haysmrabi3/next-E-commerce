@@ -5,7 +5,6 @@ export default function Contact() {
         <section id="Contact" className="bg-gray-50 py-16 text-black font-semibold "  >
             <div className="container mx-auto px-6 max-w-3xl">
 
-                {/* Title */}
                 <div className="text-center mb-10">
                     <h4 className="text-3xl font-bold mb-3">Contact Us</h4>
                     <p className="text-gray-600">
@@ -13,10 +12,8 @@ export default function Contact() {
                     </p>
                 </div>
 
-                {/* Form */}
                 <form className="bg-white p-8 rounded-2xl shadow-md space-y-6">
 
-                    {/* Name */}
                     <div>
                         <label htmlFor="name" className="block mb-2 font-semibold">
                             Name
@@ -30,7 +27,6 @@ export default function Contact() {
                         />
                     </div>
 
-                    {/* Email */}
                     <div>
                         <label htmlFor="email" className="block mb-2 font-semibold">
                             Email
@@ -44,7 +40,6 @@ export default function Contact() {
                         />
                     </div>
 
-                    {/* Phone */}
                     <div>
                         <label htmlFor="phone" className="block mb-2 font-semibold">
                             Phone Number
@@ -57,7 +52,6 @@ export default function Contact() {
                         />
                     </div>
 
-                    {/* Message */}
                     <div>
                         <label htmlFor="message" className="block mb-2 font-semibold">
                             Message
@@ -71,7 +65,6 @@ export default function Contact() {
                         ></textarea>
                     </div>
 
-                    {/* Button */}
                     <button
                         type="submit"
                         className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
